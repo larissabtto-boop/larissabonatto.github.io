@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Larissa B. — Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #1a1a1a;
+    --border: #222222;
+    --text: #f0f0f0;
+    --muted: #888888;
+    --accent: #ff2d78;
+    --accent2: #ff6aaa;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 48px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    color: var(--text); text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,45,120,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+    color: var(--muted); text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 28px;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero-desc {
+    max-width: 480px;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-size: 0.82rem; font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer; border: none;
+    letter-spacing: 0.01em;
+  }
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-outline:hover {
+    border-color: var(--text);
+    background: rgba(255,255,255,0.04);
+  }
+  .btn svg { width: 12px; height: 12px; }
+
+  /* ABOUT */
+  .about {
+    padding: 100px 48px;
+    border-top: 1px solid var(--border);
+  }
+  .section-label {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 48px;
+  }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: start;
+  }
+  .about h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .about p { color: var(--muted); line-height: 1.8; }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    margin-top: 0;
+  }
+  .skill-card {
+    background: var(--surface);
+    padding: 28px 24px;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .skill-card:hover {
+    border-color: #333;
+    background: var(--surface2);
+  }
+  .skill-icon {
+    width: 32px; height: 32px;
+    margin-bottom: 16px;
+    color: var(--accent);
+  }
+  .skill-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem; font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .skill-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+  /* WORK */
+  .work { padding: 100px 48px; border-top: 1px solid var(--border); }
+  .work-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 48px;
+  }
+  .work-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700; letter-spacing: -0.03em;
+  }
+  .filter-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag {
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    font-size: 0.72rem; font-weight: 500;
+    color: var(--muted);
+    cursor: pointer; transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .tag:hover, .tag.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(255,45,120,0.06);
+  }
+
+  .projects-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  }
+  .project-card {
+    position: relative; overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    text-decoration: none; color: inherit;
+    display: block;
+    transition: border-color 0.3s;
+  }
+  .project-card:hover { border-color: #333; }
+  .project-card:hover .project-img { transform: scale(1.03); }
+  .project-card:hover .project-arrow { opacity: 1; transform: translate(0,0); }
+  .project-img-wrap {
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    background: var(--surface2);
+  }
+  .project-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .project-img-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--border); font-size: 2rem;
+  }
+  .project-body { padding: 24px; }
+  .project-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 10px;
+  }
+  .project-company { font-size: 0.75rem; color: var(--muted); font-weight: 500; }
+  .project-year { font-size: 0.72rem; color: var(--muted); }
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+  .project-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+  .project-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .project-tag {
+    padding: 3px 9px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    font-size: 0.68rem; color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+  .project-arrow {
+    position: absolute; top: 20px; right: 20px;
+    width: 36px; height: 36px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: translate(4px,-4px);
+    transition: all 0.3s ease;
+  }
+  .project-arrow svg { width: 14px; height: 14px; color: white; }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 48px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer p { font-size: 0.78rem; color: var(--muted); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a {
+    font-size: 0.78rem; color: var(--muted);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--text); }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0; transform: translateY(24px);
+    animation: fadeUp 0.7s ease forwards;
+  }
+  .fade-up:nth-child(2) { animation-delay: 0.1s; }
+  .fade-up:nth-child(3) { animation-delay: 0.2s; }
+  .fade-up:nth-child(4) { animation-delay: 0.3s; }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .hero, .about, .work { padding-left: 24px; padding-right: 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .work-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Larissa B.</a>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+    <a href="https://behance.net" target="_blank">Behance</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge fade-up">Product Designer</div>
+  <h1 class="fade-up">Hi, I'm <span class="accent">Larissa</span></h1>
+  <p class="hero-desc fade-up">I'm a product designer who loves crafting product solutions that meet business goals with effortless user flow.</p>
+  <div class="hero-ctas fade-up">
+    <a href="https://linkedin.com" target="_blank" class="btn btn-outline">
+      LinkedIn
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
+    </a>
+    <a href="https://behance.net" target="_blank" class="btn btn-outline">
+      Behance
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="about">
+  <div class="section-label">About</div>
+  <div class="about-grid">
+    <div>
+      <h2>Product Design by Craft & Strategy</h2>
+      <p>A product designer with 5+ years of experience, passionate about building meaningful digital products. I work end-to-end, shaping ideas into clear experiences and collaborating closely with cross-functional teams to bring them to life.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <h3>UX Research & Validation</h3>
+        <p>Conduct user interviews, usability tests, and competitor benchmarks to uncover real problems and validate flows.</p>
+      </div>
+      <div class="skill-card">
+        <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
+        <h3>Flow & Journey Design</h3>
+        <p>Redesign complex user journeys from scratch or optimization onboarding, wallet creation, deposits/minting/withdrawals.</p>
+      </div>
+      <div class="skill-card">
+        <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <h3>UI Design & Components</h3>
+        <p>Rapidly build high-quality screens, icons, and layouts that are visually polished and functional.</p>
+      </div>
+      <div class="skill-card">
+        <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <h3>Design System Adaptation</h3>
+        <p>Customize existing React/UI libraries or extend design systems with new components for consistency and scalability.</p>
+      </div>
+      <div class="skill-card">
+        <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <h3>Cross-Functional Collaboration</h3>
+        <p>Partner closely with PMs, engineers, QA, stakeholders, and customer success to align designs with feasibility and metrics.</p>
+      </div>
+      <div class="skill-card">
+        <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <h3>End-to-End Ownership</h3>
+        <p>Lead products from ideation to launch-research, flows, UI implementation support, and post-launch validation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="work-header">
+    <div>
+      <div class="section-label">Selected Work</div>
+      <h2>Projects</h2>
+    </div>
+    <div class="filter-tags">
+      <span class="tag active">Design Lead</span>
+      <span class="tag">Strategy</span>
+      <span class="tag">Research</span>
+      <span class="tag">Design System</span>
+    </div>
+  </div>
+
+  <div class="projects-grid">
+    <a href="anzens.html" class="project-card">
+      <div class="project-arrow">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12L12 2M12 2H4M12 2v8"/></svg>
+      </div>
+      <div class="project-img-wrap">
+        <div class="project-img-placeholder">◈</div>
+      </div>
+      <div class="project-body">
+        <div class="project-meta">
+          <span class="project-company">Emurgo</span>
+          <span class="project-year">2024–2025</span>
+        </div>
+        <div class="project-title">Anzens</div>
+        <p class="project-desc">Bridging Traditional Finance and DeFi Through Intuitive Design.</p>
+        <div class="project-tags">
+          <span class="project-tag">Design Lead</span>
+          <span class="project-tag">Strategy</span>
+          <span class="project-tag">Research</span>
+          <span class="project-tag">Design System</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="yoroi.html" class="project-card">
+      <div class="project-arrow">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12L12 2M12 2H4M12 2v8"/></svg>
+      </div>
+      <div class="project-img-wrap">
+        <div class="project-img-placeholder">◈</div>
+      </div>
+      <div class="project-body">
+        <div class="project-meta">
+          <span class="project-company">Emurgo</span>
+          <span class="project-year">2023–2024</span>
+        </div>
+        <div class="project-title">Yoroi</div>
+        <p class="project-desc">Redesigning onboarding to reduce drop-offs and build trust in a non-custodial wallet.</p>
+        <div class="project-tags">
+          <span class="project-tag">Strategy</span>
+          <span class="project-tag">Research</span>
+          <span class="project-tag">Design System</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="tropix.html" class="project-card">
+      <div class="project-arrow">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12L12 2M12 2H4M12 2v8"/></svg>
+      </div>
+      <div class="project-img-wrap">
+        <div class="project-img-placeholder">◈</div>
+      </div>
+      <div class="project-body">
+        <div class="project-meta">
+          <span class="project-company">Weblock</span>
+          <span class="project-year">2023</span>
+        </div>
+        <div class="project-title">NFT Marketplace</div>
+        <p class="project-desc">Bridging Traditional Finance and DeFi Through Intuitive Design.</p>
+        <div class="project-tags">
+          <span class="project-tag">Design Lead</span>
+          <span class="project-tag">Research</span>
+          <span class="project-tag">Design System</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="sausaude.html" class="project-card">
+      <div class="project-arrow">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12L12 2M12 2H4M12 2v8"/></svg>
+      </div>
+      <div class="project-img-wrap">
+        <div class="project-img-placeholder">◈</div>
+      </div>
+      <div class="project-body">
+        <div class="project-meta">
+          <span class="project-company">Personal Project</span>
+          <span class="project-year">2022</span>
+        </div>
+        <div class="project-title">Sua Saúde</div>
+        <p class="project-desc">A health platform ensuring doctors have critical patient info in emergencies.</p>
+        <div class="project-tags">
+          <span class="project-tag">Research</span>
+          <span class="project-tag">Design System</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Larissa. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+    <a href="https://behance.net" target="_blank">Behance</a>
+  </div>
+</footer>
+
+</body>
+</html>

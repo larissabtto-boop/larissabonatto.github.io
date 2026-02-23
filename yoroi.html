@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoroi — Larissa B.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0a;--surface:#111111;--surface2:#1a1a1a;--border:#222222;--text:#f0f0f0;--muted:#888888;--accent:#ff2d78}
+  *{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 48px;background:rgba(10,10,10,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+  .nav-logo{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--text);text-decoration:none;letter-spacing:-0.02em}
+  .nav-links{display:flex;gap:32px}.nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color 0.2s}.nav-links a:hover{color:var(--text)}
+  .page-wrap{max-width:800px;margin:0 auto;padding:140px 48px 80px}
+  .back-link{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:0.82rem;margin-bottom:48px;transition:color 0.2s}.back-link:hover{color:var(--text)}.back-link svg{width:14px;height:14px}
+  .project-category{font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+  .project-title{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;letter-spacing:-0.04em;line-height:0.95;margin-bottom:20px}
+  .project-subtitle{font-size:1rem;color:var(--muted);max-width:560px;line-height:1.7;margin-bottom:40px}
+  .project-meta-bar{display:flex;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:56px}
+  .meta-item{flex:1;padding:16px 20px;border-right:1px solid var(--border)}.meta-item:last-child{border-right:none}
+  .meta-label{font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px}.meta-value{font-size:0.85rem;font-weight:500}
+  .carousel{position:relative;margin-bottom:64px}
+  .carousel-track{display:flex;overflow:hidden;border-radius:8px;border:1px solid var(--border)}
+  .carousel-slide{min-width:100%;aspect-ratio:16/9;background:var(--surface);display:flex;align-items:center;justify-content:center}
+  .image-placeholder{display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--border)}.image-placeholder svg{width:40px;height:40px}.image-placeholder p{font-size:0.75rem;color:var(--muted)}
+  .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;background:rgba(10,10,10,0.8);border:1px solid var(--border);border-radius:50%;cursor:pointer;color:var(--text);display:flex;align-items:center;justify-content:center;transition:all 0.2s;z-index:2}.carousel-btn:hover{background:var(--surface2)}.carousel-btn.prev{left:-20px}.carousel-btn.next{right:-20px}.carousel-btn svg{width:16px;height:16px}
+  .carousel-dots{display:flex;justify-content:center;gap:6px;margin-top:16px}.dot{width:6px;height:6px;border-radius:50%;background:var(--border);cursor:pointer;transition:all 0.2s}.dot.active{background:var(--accent);width:18px;border-radius:3px}
+  .content-section{margin-bottom:52px}.content-section h2{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+  .content-section p{color:var(--muted);line-height:1.8;margin-bottom:12px}.content-section ul{list-style:none;display:flex;flex-direction:column;gap:10px}.content-section ul li{color:var(--muted);padding-left:20px;position:relative;line-height:1.7}.content-section ul li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:0.8rem}
+  footer{padding:40px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;margin-top:80px}footer p{font-size:0.78rem;color:var(--muted)}.footer-links{display:flex;gap:24px}.footer-links a{font-size:0.78rem;color:var(--muted);text-decoration:none;transition:color 0.2s}.footer-links a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+<nav><a href="index.html" class="nav-logo">Larissa B.</a><div class="nav-links"><a href="index.html#work">Work</a><a href="https://linkedin.com" target="_blank">LinkedIn</a><a href="https://behance.net" target="_blank">Behance</a></div></nav>
+<div class="page-wrap">
+  <a href="index.html" class="back-link"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 7H2M2 7l5-5M2 7l5 5"/></svg>Back to work</a>
+  <div class="project-category">Stablecoin Platform</div>
+  <h1 class="project-title">Yoroi</h1>
+  <p class="project-subtitle">Redesigning onboarding to reduce drop-offs and build trust in a non-custodial wallet.</p>
+  <div class="project-meta-bar">
+    <div class="meta-item"><div class="meta-label">Period</div><div class="meta-value">2023–2024</div></div>
+    <div class="meta-item"><div class="meta-label">Company</div><div class="meta-value">Emurgo (80+ employees)</div></div>
+    <div class="meta-item"><div class="meta-label">Role</div><div class="meta-value">Senior Product Designer</div></div>
+  </div>
+  <div class="carousel"><div class="carousel-track" id="track"><div class="carousel-slide"><div class="image-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/></svg><p>Replace with your Yoroi screenshot</p></div></div><div class="carousel-slide"><div class="image-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/></svg><p>Screenshot 2</p></div></div></div><button class="carousel-btn prev" onclick="slide(-1)"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2L4 7l5 5"/></svg></button><button class="carousel-btn next" onclick="slide(1)"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 2l5 5-5 5"/></svg></button><div class="carousel-dots"><div class="dot active" onclick="goTo(0)"></div><div class="dot" onclick="goTo(1)"></div></div></div>
+  <div class="content-section"><h2>The Product</h2><p>Yoroi is a non-custodial browser and mobile crypto wallet for the Cardano ecosystem, used by over 1 million users worldwide. It allows users to securely store assets, manage tokens and NFTs, and stake ADA without running a full node.</p></div>
+  <div class="content-section"><h2>The Problem</h2><p>The wallet creation flow was confusing and failed to clearly communicate one of the most critical concepts: the recovery phrase is the only way to access the wallet. As a result:</p><ul><li>Around 30% of support tickets were related to users losing their recovery phrase</li><li>Many users dropped off during wallet creation</li><li>Security-related copy was unclear and easy to skip</li><li>Users made mistakes during the phrase confirmation step</li></ul></div>
+  <div class="content-section"><h2>My Role</h2><p>Senior Product Designer focused on onboarding and security-critical flows.</p><ul><li>Led user research and usability testing</li><li>Analyzed support data with Customer Success</li><li>Facilitated ideation workshops and defined new onboarding flows</li><li>Designed the new recovery phrase experience</li><li>Partnered closely with Product and Engineering through implementation</li><li>Participated in QA across platforms</li></ul></div>
+  <div class="content-section"><h2>Outcomes</h2><ul><li>Support tickets related to lost recovery phrases dropped from 30% to 10%</li><li>Wallet creation completion increased by 3% in the first month</li><li>Drop-off during onboarding decreased by 15%</li><li>Users reported the flow felt clearer, faster, and more trustworthy</li><li>Reduced friction for both users and the support team</li></ul></div>
+</div>
+<footer><p>© 2025 Larissa. All rights reserved.</p><div class="footer-links"><a href="https://linkedin.com" target="_blank">LinkedIn</a><a href="https://behance.net" target="_blank">Behance</a></div></footer>
+<script>let c=0;const s=document.querySelectorAll('.carousel-slide'),d=document.querySelectorAll('.dot');function u(){document.getElementById('track').style.transform=`translateX(-${c*100}%)`;document.getElementById('track').style.transition='transform 0.4s ease';d.forEach((x,i)=>x.classList.toggle('active',i===c))}function slide(dir){c=(c+dir+s.length)%s.length;u()}function goTo(i){c=i;u()}</script>
+</body>
+</html>

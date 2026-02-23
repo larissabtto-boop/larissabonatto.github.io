@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anzens — Larissa B.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #1a1a1a;
+    --border: #222222;
+    --text: #f0f0f0;
+    --muted: #888888;
+    --accent: #ff2d78;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 48px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
+    color: var(--text); text-decoration: none; letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .page-wrap { max-width: 800px; margin: 0 auto; padding: 140px 48px 80px; }
+
+  .back-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--muted); text-decoration: none; font-size: 0.82rem;
+    margin-bottom: 48px; transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+  .back-link svg { width: 14px; height: 14px; }
+
+  .project-category {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800; letter-spacing: -0.04em;
+    line-height: 0.95; margin-bottom: 20px;
+  }
+  .project-subtitle {
+    font-size: 1rem; color: var(--muted);
+    max-width: 560px; line-height: 1.7; margin-bottom: 40px;
+  }
+  .project-meta-bar {
+    display: flex; gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 4px; overflow: hidden;
+    margin-bottom: 56px;
+  }
+  .meta-item {
+    flex: 1; padding: 16px 20px;
+    border-right: 1px solid var(--border);
+  }
+  .meta-item:last-child { border-right: none; }
+  .meta-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+  .meta-value { font-size: 0.85rem; font-weight: 500; }
+
+  .hero-image {
+    width: 100%;
+    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    aspect-ratio: 16/9;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 64px;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+  .image-placeholder {
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    color: var(--border);
+  }
+  .image-placeholder svg { width: 40px; height: 40px; }
+  .image-placeholder p { font-size: 0.75rem; color: var(--muted); }
+
+  /* Carousel */
+  .carousel { position: relative; margin-bottom: 64px; }
+  .carousel-track {
+    display: flex; overflow: hidden;
+    border-radius: 8px; border: 1px solid var(--border);
+  }
+  .carousel-slide {
+    min-width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--surface);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.4s ease;
+  }
+  .carousel-slide .image-placeholder { color: var(--border); }
+  .carousel-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 40px; height: 40px;
+    background: rgba(10,10,10,0.8); border: 1px solid var(--border);
+    border-radius: 50%; cursor: pointer; color: var(--text);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; z-index: 2;
+  }
+  .carousel-btn:hover { background: var(--surface2); border-color: #444; }
+  .carousel-btn.prev { left: -20px; }
+  .carousel-btn.next { right: -20px; }
+  .carousel-btn svg { width: 16px; height: 16px; }
+  .carousel-dots {
+    display: flex; justify-content: center; gap: 6px; margin-top: 16px;
+  }
+  .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--border); cursor: pointer; transition: all 0.2s;
+  }
+  .dot.active { background: var(--accent); width: 18px; border-radius: 3px; }
+
+  .content-section { margin-bottom: 52px; }
+  .content-section h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem; font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .content-section p {
+    color: var(--muted); line-height: 1.8; margin-bottom: 12px;
+  }
+  .content-section ul {
+    list-style: none; display: flex; flex-direction: column; gap: 10px;
+  }
+  .content-section ul li {
+    color: var(--muted); padding-left: 20px; position: relative;
+    line-height: 1.7;
+  }
+  .content-section ul li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--accent); font-size: 0.8rem;
+  }
+
+  footer {
+    padding: 40px 48px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 80px;
+  }
+  footer p { font-size: 0.78rem; color: var(--muted); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 0.78rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--text); }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .page-wrap { padding: 120px 24px 60px; }
+    .project-meta-bar { flex-direction: column; }
+    .meta-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .meta-item:last-child { border-bottom: none; }
+    .carousel-btn.prev { left: 8px; }
+    .carousel-btn.next { right: 8px; }
+    footer { flex-direction: column; gap: 16px; padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Larissa B.</a>
+  <div class="nav-links">
+    <a href="index.html#work">Work</a>
+    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+    <a href="https://behance.net" target="_blank">Behance</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 7H2M2 7l5-5M2 7l5 5"/></svg>
+    Back to work
+  </a>
+
+  <div class="project-category">Stablecoin Platform</div>
+  <h1 class="project-title">Anzens</h1>
+  <p class="project-subtitle">Made cross-border payments usable without forcing companies to understand DeFi.</p>
+
+  <div class="project-meta-bar">
+    <div class="meta-item">
+      <div class="meta-label">Period</div>
+      <div class="meta-value">2024–2025</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Company</div>
+      <div class="meta-value">Emurgo (80+ employees)</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Role</div>
+      <div class="meta-value">Design Lead</div>
+    </div>
+  </div>
+
+  <div class="carousel" id="carousel">
+    <div class="carousel-track" id="track">
+      <div class="carousel-slide">
+        <div class="image-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <p>Replace with your Anzens screenshot</p>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <div class="image-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <p>Screenshot 2</p>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <div class="image-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <p>Screenshot 3</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-btn prev" onclick="slide(-1)">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2L4 7l5 5"/></svg>
+    </button>
+    <button class="carousel-btn next" onclick="slide(1)">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 2l5 5-5 5"/></svg>
+    </button>
+    <div class="carousel-dots" id="dots">
+      <div class="dot active" onclick="goTo(0)"></div>
+      <div class="dot" onclick="goTo(1)"></div>
+      <div class="dot" onclick="goTo(2)"></div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <h2>The Product</h2>
+    <p>Anzens is a platform that enables companies to pay employees, contractors, and partners across borders using USDA, a fully reserved Cardano-native stablecoin. It reduces fees, delays, and bureaucracy while allowing receivers to withdraw funds locally without exposure to crypto volatility.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>The Problem</h2>
+    <p>Cross-border payments are slow, expensive, and complex. Companies faced:</p>
+    <ul>
+      <li>High transaction fees</li>
+      <li>Long settlement times</li>
+      <li>Heavy bureaucracy and intermediaries</li>
+    </ul>
+    <p style="margin-top:16px;">People receiving payments faced delays and unpredictable exchange rates, limited access to traditional banking, and confusion around crypto concepts required to get paid. DeFi concepts like wallets, recovery phrases, and minting introduced friction and caused users to drop off or make critical mistakes.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>My Role</h2>
+    <ul>
+      <li>Led discovery and competitive research</li>
+      <li>Worked closely with PMs, engineers, and partners to define requirements</li>
+      <li>Designed onboarding and transaction flows for companies and receivers</li>
+      <li>Translated DeFi mechanics into understandable, finance-familiar interactions</li>
+      <li>Designed and documented a partner backoffice so stakeholders could manage users and transactions</li>
+      <li>Built and maintained the design system</li>
+      <li>Ran usability testing and iterated based on real user feedback</li>
+      <li>Supported QA and UAT through launch</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Outcomes</h2>
+    <ul>
+      <li>Company onboarding increased, with early adoption from the US and Gulf countries</li>
+      <li>Onboarding abandonment dropped after simplifying flows and clarifying recovery-phrase handling</li>
+      <li>Support tickets decreased, especially around wallet creation and security concepts</li>
+      <li>Partners moved from manual spreadsheets to a dedicated backoffice, reducing approval errors and operational friction</li>
+      <li>Stakeholders gained confidence to onboard new companies and scale operations</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Larissa. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+    <a href="https://behance.net" target="_blank">Behance</a>
+  </div>
+</footer>
+
+<script>
+let current = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.dot');
+
+function updateCarousel() {
+  document.getElementById('track').style.transform = `translateX(-${current * 100}%)`;
+  document.getElementById('track').style.transition = 'transform 0.4s ease';
+  dots.forEach((d, i) => d.classList.toggle('active', i === current));
+}
+function slide(dir) {
+  current = (current + dir + slides.length) % slides.length;
+  updateCarousel();
+}
+function goTo(i) { current = i; updateCarousel(); }
+</script>
+</body>
+</html>
